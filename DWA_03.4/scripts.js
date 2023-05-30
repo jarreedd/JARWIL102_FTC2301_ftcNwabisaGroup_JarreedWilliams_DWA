@@ -1,6 +1,5 @@
 //@ts-check
 
-
 //Leo Musvaire details
 
 /**
@@ -84,7 +83,7 @@ const sarahPostal = '0310'
  * @typedef {Object} Person
  * @property {number|string} accessId - person access ID
  * @property {string} name - person name
- * @property {number|string} balance - person age (optional)
+ * @property {number|string} balance - person balance
  * @property {number} [age] - person age (optional)
  * @property {{number: number|string, street: string, postalCode: number | string}} address - person adress
  */
