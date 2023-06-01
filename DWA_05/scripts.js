@@ -11,13 +11,14 @@ form.addEventListener("submit", (event) => {
 	if (dividend === "" || divider === "") {
 		result.innerText = "Division not performed. Both values are required in inputs. Try again"
 
-	} else if (dividend < 0 || divider < 0) {
+	} else if (divider < 0) {
 		result.innerText = "Division not performed. Invalid number provided. Try again"
-		console.error("Division not performed. Invalid number provided. Try again");
+		throw new Error("Division not performed. Invalid number provided. Try again");
 
-	} else if (dividend == "YOLO" || divider == "+++") {
+	} else if (dividend !== isNaN || divider !== isNaN) {
 		body.innerText = "Something critical went wrong. Please reload the page"
-		console.error("Something critical went wrong. Please reload the page");
+		throw new Error("Something critical went wrong. Please reload the page");
+		
 	} else {
 		result.innerText = Math.floor(dividend / divider);
 	}
