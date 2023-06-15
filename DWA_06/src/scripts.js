@@ -1,7 +1,8 @@
+// @ts-check
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
 import { html } from './dom_references.js'
 
-/* GLOBAL VARIABLES */
+/*-------------------------------------------------- GLOBAL VARIABLES --------------------------------------------------*/
 /**
  * page is made up of a certain amount of books
  * @type {number}
@@ -27,7 +28,7 @@ let range = {
  */
 let extracted = matches.slice(range.start, range.end)
 
-/* FUNCTIONS AND EVENTHANDLER */
+/*-------------------------------------------------- FUNCTIONS AND EVENTHANDLER --------------------------------------------------*/
 /**
  * Creates a button element that contains the image, title and author of a book with a specific id.
  * @param {{author:string, id:string, image:string, title:string}} props 
@@ -68,6 +69,7 @@ const updateRemaining = () => {
     return remaining
 }
 
+
 const showMore = () => {
     const fragment = document.createDocumentFragment()
     page += 1
@@ -94,20 +96,26 @@ const showMore = () => {
     `;
 }
 
+/**
+ * Search for a book with a specific ID
+ * @param {string} bookID 
+ * @returns {object}
+ */
+const getBook = (bookID) => {
+    for (const book of books) {
+        if (book.id === bookID) {
+            return book
+        }
+    }
+}
+
 const activePreview = (event) => {
     event.preventDefault()
     let active = null
 
     const bookPreview = event.target.closest('.preview')
     const bookPreviewId = bookPreview.getAttribute('data-preview');
-    
-    for (const book of books) {
-        if (active) break
-
-        if (book.id === bookPreviewId) {
-            active = book
-        }
-    }
+    active = getBook(bookPreviewId)
     
     if (active) {
         const { title, image, description, published, author } = active
@@ -118,10 +126,10 @@ const activePreview = (event) => {
         html.list.subtitle.innerText = `${authors[author]} (${new Date(published).getFullYear()})`
         html.list.description.innerText = description
     }
+}
 
-    html.list.close.addEventListener('click', () => {
-        html.list.active.open = false
-    })
+const closePreview = () => {
+    html.list.active.open = false
 }
 
 const showSettingsMenu = (event) => {
@@ -213,7 +221,7 @@ const search = (event) => {
     html.search.overlay.open = false
 }
 
-/* MAIN LOGIC */
+/*-------------------------------------------------- MAIN LOGIC --------------------------------------------------*/
 const starting = document.createDocumentFragment()
 
 for (const booksIndex of extracted) {
@@ -222,6 +230,14 @@ for (const booksIndex of extracted) {
 }
 
 html.list.items.appendChild(starting)
+
+
+
+
+
+
+
+
 
 
 const genreHtml = document.createDocumentFragment()
@@ -254,13 +270,19 @@ for (const [id, name] of Object.entries(authors)) {
 html.search.author.appendChild(authorsHtml)
 
 
+
+
+
+
+
+
+
+
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    // document.querySelector('[data-settings-theme]').value = 'night'
     html.settings.theme.value = 'night'
     document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
     document.documentElement.style.setProperty('--color-light', '10, 10, 20');
 } else {
-    // document.querySelector('[data-settings-theme]').value = 'day'
     html.settings.theme.value = 'day'
     document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
     document.documentElement.style.setProperty('--color-light', '255, 255, 255');
@@ -272,7 +294,7 @@ html.list.button.innerHTML = /* html */`
     <span class="list__remaining"> (${updateRemaining()})</span>
 `;
 
-/* EVENTLISTENERS */
+/*-------------------------------------------------- EVENTLISTENERS --------------------------------------------------*/
 html.settings.button.addEventListener('click', showSettingsMenu)
 html.settings.cancel.addEventListener('click', cancelSettings)
 html.settings.form.addEventListener('submit', saveTheme)
@@ -281,3 +303,4 @@ html.search.button.addEventListener('click', showSearchMenu)
 html.search.cancel.addEventListener('click', cancelSearch)
 html.search.form.addEventListener('submit', search)
 html.list.items.addEventListener('click', activePreview)
+html.list.close.addEventListener('click', closePreview)

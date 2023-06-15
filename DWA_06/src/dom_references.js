@@ -8,7 +8,7 @@ const getHtml = (label) => {
 
     if (!(node instanceof HTMLElement)) {
         throw new Error(
-            `[data-${label} was not found in HTML]`
+            `data-${label} was not found in HTML`
         )
     };
 
