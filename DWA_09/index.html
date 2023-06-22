@@ -25,8 +25,10 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap"
       rel="stylesheet"
     />
-
+    
+    <script src="./src/previewCard.js" defer type="module"></script>
     <script src="./src/scripts.js" defer type="module"></script>
+    
   </head>
   <body>
 
@@ -95,21 +97,8 @@
       <button class="list__button" data-list-button></button>
     </main>
 
-
-    <dialog class="overlay" data-list-active>
-      <div class="overlay__preview"><img class="overlay__blur" data-list-blur src=""/><img class="overlay__image" data-list-image src=""/></div>
-      <div class="overlay__content">
-        <h3 class="overlay__title" data-list-title></h3>
-        <div class="overlay__data" data-list-subtitle></div>
-        <p class="overlay__data overlay__data_secondary" data-list-description></p>
-      </div>
-
-      <div class="overlay__row">
-        <button class="overlay__button overlay__button_primary" data-list-close>Close</button>
-      </div>
-    </dialog>
-
-
+    <preview-card></preview-card>
+    
     <dialog class="overlay" data-search-overlay>
       <div class="overlay__content">
         <form class="overlay__form" data-search-form id="search">

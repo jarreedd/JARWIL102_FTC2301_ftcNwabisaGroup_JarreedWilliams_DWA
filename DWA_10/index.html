@@ -19,24 +19,23 @@
 
     <body>
         <header class="header">
-            <sl-alert variant="primary" duration="2000" closable class="alert-overview" data-key="alert-reset">
-                <sl-icon slot="icon" name="info-circle"></sl-icon>
-                <strong>Counter has been reset.</strong>
-            </sl-alert>
+            
             <h1 class="header-title">Tally Count</h1>
         </header>
 
         <main class="main">
             <div class="counter-1">
-                <input class="counter-value" data-key="number" readonly value="0">
+                <input class="counter-value" data-value-number readonly value="0">
                 <div class="counter-actions">
-                    <sl-button class="counter__btn sub" data-key="subtract">-</sl-button>
-                    <sl-button class="counter__btn add" data-key="add">+</sl-button>
-                    <sl-button class="counter__btn reset" data-key="reset">Reset</sl-button>
+                    <sl-button class="counter__btn sub" data-value-subtract>-</sl-button>
+                    <sl-button class="counter__btn add" data-value-add>+</sl-button>
+                    <sl-button class="counter__btn reset" data-reset-button>Reset</sl-button>
                 </div>
-                
+                <sl-alert variant="primary" duration="2000" closable class="alert-overview" data-rest-msg>
+                    <sl-icon slot="icon" name="info-circle"></sl-icon>
+                    <strong>Counter has been reset.</strong>
+                </sl-alert>
             </div>
-            
         </main>
 
         <footer class="footer">
