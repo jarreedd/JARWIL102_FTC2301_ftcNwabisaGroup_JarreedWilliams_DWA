@@ -16,6 +16,16 @@ html.subtract.addEventListener('click', () => {
 
     const newValue = getState().count
     html.number.value = newValue;
+
+    // // Enable add button
+    // if (html.add.disabled === true) {
+    //     html.add.disabled = false
+    // }
+
+    // Disable subtract button when number is smaller or equal to min value
+    if (newValue <= getState().state) {
+        // subtract.disabled = true
+    }
 });
 
 html.add.addEventListener('click', () => {
@@ -24,6 +34,16 @@ html.add.addEventListener('click', () => {
 
     const newValue = getState().count
     html.number.value = newValue;
+
+    // // Enable subtract button
+    // if (html.subtract.disabled === true) {
+    //     html.subtract.disabled = false
+    // }
+
+    // Disable add button when number is bigger or equal to max value
+    // if (newValue >= MAX_NUMBER) {
+    //     // add.disabled = true
+    // }
 });
 
 html.reset.addEventListener('click', () => {
