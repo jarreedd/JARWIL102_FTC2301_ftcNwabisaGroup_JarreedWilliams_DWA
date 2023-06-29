@@ -81,8 +81,10 @@ const products = [
 
 
 // Use forEach to console.log each product name to the console.
+products.forEach((item) => console.log(item.product));
 
 // Use filter to filter out products that have a name longer than 5 characters.
+console.log(products.filter((item) => item.product.length <= 5));
 
 // Using both filter and map. Convert all prices that are strings to numbers, and remove all products from the array that do not have prices. 
 //After this has been done then use reduce to calculate the combined price of all remaining products.
