@@ -55,3 +55,5 @@ html.reset.addEventListener('click', () => {
 
     html.resetmsg.show();
 });
+
+console.log(getState());
